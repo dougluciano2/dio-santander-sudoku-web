@@ -1,9 +1,9 @@
 package br.com.dougluciano.sudoku_web.models;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 
-@Getter
+
 public enum GameStatusEnum {
 
     NON_STARTED("Não iniciado"),
@@ -12,7 +12,11 @@ public enum GameStatusEnum {
 
     private String label;
 
-    GameStatusEnum(String label){
+    private GameStatusEnum(String label){
         this.label = label;
+    }
+
+    public String getLabel(){
+        return label;
     }
 }

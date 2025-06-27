@@ -3,20 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Sudoku DIO</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
-<h1>Jogo de Sudoku</h1>
-<p th:text="${'Status do Jogo: ' + gameStatus}"></p>
-<p th:text="${'Tem Erros: ' + hasErrors}"></p>
+<h1 th:text="${'Jogo de Sudoku'}">Jogo de Sudoku</h1>
 
-<p>Tabuleiro do Sudoku aqui (será renderizado dinamicamente)</p>
-<div th:each="row, rowStat : ${boardSpaces}">
-    <div th:each="space, colStat : ${row}">
-        <span th:text="${space.currentPosition != null ? space.currentPosition : '-'}"></span>
-        <span th:if="${space.fixedPosition}" style="font-weight: bold;"> (F) </span>
-        <span th:if="${!space.fixedPosition}" style="font-weight: normal;"> (E) </span>
-    </div>
-    <br/>
+<table class="sudoku-board">
+    <tr th:each="rowIdx : ${#numbers.sequence(0, 8)}">
+        <td th:each="colIdx : ${#numbers.sequence(0, 8)}"
+            th:with="space=${boardSpaces.get(colIdx).get(rowIdx)}"
+            th:text="${space.currentPosition != null ? space.currentPosition : ''}"
+            th:class="${space.fixedPosition ? 'fixed' : 'editable'}">
+        </td>
+    </tr>
+</table>
+
+<div class="status-messages">
+    <p th:text="${'Status do Jogo: ' + gameStatus.getLabel()}"></p>
+    <p th:if="${hasErrors}" class="error-message">Há erros no tabuleiro!</p>
+    <p th:unless="${hasErrors}" class="success-message" th:if="${gameStatus == T(br.com.dougluciano.sudoku_web.models.GameStatusEnum).COMPLETE}">Jogo Completo!</p>
+</div>
+
+<div class="buttons">
+    <button>Reiniciar Jogo</button>
+    <button>Verificar</button>
 </div>
 
 </body>
