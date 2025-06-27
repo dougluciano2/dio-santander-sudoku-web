@@ -3,7 +3,6 @@ package br.com.dougluciano.sudoku_web.models;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 @Getter
 public enum GameStatusEnum {
 
@@ -13,4 +12,7 @@ public enum GameStatusEnum {
 
     private String label;
 
+    GameStatusEnum(String label){
+        this.label = label;
+    }
 }

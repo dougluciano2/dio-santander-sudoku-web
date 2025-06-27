@@ -1,16 +1,28 @@
 package br.com.dougluciano.sudoku_web.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.Collection;
 import java.util.List;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+@Getter
+@Setter
+@ToString
 public class Board {
 
     private final List<List<Space>> spaces;
 
     public Board(List<List<Space>> spaces){ this.spaces = spaces; }
+
+    public List<List<Space>> getSpaces() {
+        return spaces;
+    }
 
     public GameStatusEnum getStatusGame(){
         if (spaces.stream()

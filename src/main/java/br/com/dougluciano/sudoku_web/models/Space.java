@@ -14,24 +14,25 @@ public class Space {
         }
     }
 
+    // Getters
     public Integer getCurrentPosition(){
         return currentPosition;
     }
 
     public void setCurrentPosition(Integer currentPosition){
-        if (fixedPosition) return;
+        if (fixedPosition) return; // Não permite mudar se for fixa
         this.currentPosition = currentPosition;
     }
 
     public void clearSpace(){
-        setCurrentPosition(null);
+        setCurrentPosition(null); // Usa o setter, que respeita 'fixedPosition'
     }
 
-    public int getExpectedPosition(){
+    public int getExpectedPosition(){ // Retorna int, ok
         return expectedPosition;
     }
 
-    public boolean isFixedPosition(){
+    public boolean isFixedPosition(){ // Retorna boolean, ok
         return fixedPosition;
     }
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sudoku DIO</title>
+</head>
+<body>
+<h1>Jogo de Sudoku</h1>
+<p th:text="${'Status do Jogo: ' + gameStatus}"></p>
+<p th:text="${'Tem Erros: ' + hasErrors}"></p>
+
+<p>Tabuleiro do Sudoku aqui (será renderizado dinamicamente)</p>
+<div th:each="row, rowStat : ${boardSpaces}">
+    <div th:each="space, colStat : ${row}">
+        <span th:text="${space.currentPosition != null ? space.currentPosition : '-'}"></span>
+        <span th:if="${space.fixedPosition}" style="font-weight: bold;"> (F) </span>
+        <span th:if="${!space.fixedPosition}" style="font-weight: normal;"> (E) </span>
+    </div>
+    <br/>
+</div>
+
+</body>
+</html>
