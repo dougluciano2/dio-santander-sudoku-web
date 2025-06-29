@@ -7,6 +7,14 @@
 [![Maven](https://img.shields.io/badge/Maven-3.8+-C71A36.svg?logo=apache-maven)](https://maven.apache.org/)
 
 
+**Desenvolvido por:** [dougluciano2](https://github.com/dougluciano2)
+
+## 📫 Como me encontrar
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-DouglasLuciano-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/douglasluciano/)
+[![GitHub](https://img.shields.io/badge/GitHub-douglasluciano-black?style=for-the-badge&logo=github)](https://github.com/douglasluciano)
+[![Portfólio](https://img.shields.io/badge/Portf%C3%B3lio-GitHub%20Pages-blueviolet?style=for-the-badge&logo=github)](https://dougluciano2.github.io)
+
 ## ✨ Sobre o Projeto
 
 Este projeto consiste na reimplementação e modernização de um jogo de Sudoku, originalmente desenvolvido em Java Swing (desktop), para uma **aplicação web utilizando o framework Spring Boot com Spring MVC e Thymeleaf**. O objetivo principal foi migrar a lógica de negócio existente para um ambiente web, proporcionando uma interface de usuário acessível via navegador.
