@@ -54,4 +54,17 @@ public class BoardService {
 
         return spaces;
     }
+
+    public boolean clearValue(int col, int row){
+        return board.clearValue(col, row, 0);
+    }
+
+    public boolean changeValue(int col, int row, int value) {
+        return board.changeValue(col, row, value);
+    }
+
+    public boolean isGameFinished() {
+        return board.isGameFinished();
+    }
+
 }

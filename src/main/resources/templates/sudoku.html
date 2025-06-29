@@ -12,8 +12,20 @@
     <tr th:each="rowIdx : ${#numbers.sequence(0, 8)}">
         <td th:each="colIdx : ${#numbers.sequence(0, 8)}"
             th:with="space=${boardSpaces.get(colIdx).get(rowIdx)}"
-            th:text="${space.currentPosition != null ? space.currentPosition : ''}"
-            th:class="${space.fixedPosition ? 'fixed' : 'editable'}">
+            th:class="${space.fixedPosition ? 'fixed' : 'editable'}"
+            data-row-idx="${rowIdx}" data-col-idx="${colIdx}"> <span th:if="${space.fixedPosition}" th:text="${space.currentPosition != null ? space.currentPosition : ''}"></span>
+
+            <form th:unless="${space.fixedPosition}" th:action="@{/sudoku/move}" method="post" class="cell-form">
+                <input type="number"
+                       name="value"
+                       min="1" max="9"
+                       th:value="${space.currentPosition}"
+                       class="cell-input"
+                       data-row="${rowIdx}" data-col="${colIdx}"
+                       onchange="this.form.submit()" >
+                <input type="hidden" name="row" th:value="${rowIdx}" />
+                <input type="hidden" name="col" th:value="${colIdx}" />
+            </form>
         </td>
     </tr>
 </table>
@@ -22,11 +34,24 @@
     <p th:text="${'Status do Jogo: ' + gameStatus.getLabel()}"></p>
     <p th:if="${hasErrors}" class="error-message">Há erros no tabuleiro!</p>
     <p th:unless="${hasErrors}" class="success-message" th:if="${gameStatus == T(br.com.dougluciano.sudoku_web.models.GameStatusEnum).COMPLETE}">Jogo Completo!</p>
+
+    <div th:if="${message}">
+        <p th:text="${message}"
+           th:classappend="${messageType == 'success' ? 'success-message' : (messageType == 'error' ? 'error-message' : 'info-message')}">
+        </p>
+    </div>
 </div>
 
 <div class="buttons">
-    <button>Reiniciar Jogo</button>
-    <button>Verificar</button>
+    <form th:action="@{/sudoku/reset}" method="post" style="display: inline;">
+        <button type="submit">Reiniciar Jogo</button>
+    </form>
+    <form th:action="@{/sudoku/check}" method="get" style="display: inline;">
+        <button type="submit">Verificar</button>
+    </form>
+    <form th:action="@{/sudoku/finish}" method="get" style="display: inline;">
+        <button type="submit">Concluir Jogo</button>
+    </form>
 </div>
 
 </body>
